@@ -1,0 +1,84 @@
+<html>
+	<link href="css/style.css" rel="stylesheet" type="text/css">
+	<head>
+	<title>Регистрация</title>
+
+<script src="jquery.js" type="text/javascript"></script>
+<script type="text/javascript">
+	$(function(){
+	$('#name').keyup(function(){
+	var Value = $('#name').val();
+  
+	$('#msg').empty();
+  
+	$.post("check_name.php", {name:Value}, function(data) {
+		if (Value != "") {
+			
+			if (data == "1") {
+				$('#msg').html("Такое имя уже есть");
+				$('#msg').css("color", "red");
+			} else {
+				$('#msg').html("Имя свободно");
+				$('#msg').css("color", "green");
+			}
+		} else {
+			$('#msg').html("");
+		}
+	}
+	);
+	
+	});
+	});
+</script>
+	</head>
+<body>
+	<div id="container1">
+		<div id="header">
+			<img align="left" src="log.png"/>
+		</div>
+		
+		<div id="navigation">
+			<table>
+			<tr>
+			<td class="ref" align="center" width="33%">
+				<a href="inf.html">О форуме</a>
+			</td>
+	
+			<td class="ref" align="center" width="33%">
+				<a href="list.php">Темы</a>
+			</td>
+	
+			<td class="ref" align="center"  width="34%">
+				<a href="enter.html">Вход/Регистрация</a>
+			</td>
+			</tr>
+			</table>
+		</div>
+	<h2>Регистрация</h2>
+
+	<div class="stand">
+	
+	<form action="registration.php" method="post">
+		<a>Придумайте имя:</a>
+		<br/> 
+		<input type="text" name="name" id="name">
+		<span id="msg"></span><br/>
+		<a>Пароль:</a>
+		<br/> 
+		<input type="password" name="pass">
+		<br/>
+		<br/>
+		<input type="submit" value="Ок">
+	</form>
+	
+	</div>
+
+	<div id="footer1" align="center">
+		<font color="2C3B48">
+		2018, Kirill Yakovlev
+		</font>
+	</div>
+	
+	</div>
+</body>
+</html>
